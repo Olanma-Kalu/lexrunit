@@ -4,12 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lexrunit</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">      
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">     
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="Lex.css">
   <style>
     /* Your existing CSS goes here */
     /* Add your CSS styles here */
+    /* Dark Mode Styles */
+    .dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .dark-mode .landing-page {
+      background-color: #1e1e1e;
+    }
+    .dark-mode .about-text {
+      color: #ffffff;
+    }
+    .dark-mode .footer-container {
+      background-color: #1e1e1e;
+    }
+    .dark-mode button {
+      background-color: #3949ab;
+      color: #ffffff;
+    }
+    .dark-mode input, .dark-mode textarea {
+      background-color: #333;
+      color: #ffffff;
+      border: 1px solid #444;
+    }
+    .dark-mode .nav-links {
+      background-color: #1e1e1e;
+    }
+    .dark-mode .social-icon {
+      color: #ffffff;
+    }
   </style>
 </head>
 <body>
@@ -43,17 +72,15 @@
 
   <div id="about-us-section" class="About-us-page">
     <h2>ABOUT US</h2>
-
     <p class="about-text">
       At Lexrunit, we specialize in harnessing artificial intelligence to address 
       critical healthcare challenges in Africa.
-       Our mission is to bridge the gap between innovation and practical solutions,
-        enhancing prevention and treatment outcomes through our flagship product, <strong>LexCare</strong>.
+      Our mission is to bridge the gap between innovation and practical solutions,
+      enhancing prevention and treatment outcomes through our flagship product, <strong>LexCare</strong>.
       Driven by a commitment to research and collaboration,
-       we partner with healthcare professionals to deliver effective, accessible solutions that empower communities. 
-       Together, we are shaping the future of healthcare with AI.
-  </p>
-  
+      we partner with healthcare professionals to deliver effective, accessible solutions that empower communities. 
+      Together, we are shaping the future of healthcare with AI.
+    </p>
   </div>
   <hr>
 
@@ -128,5 +155,58 @@
       </a>
     </div>
   </footer>
+
+  <button id="themeSwitcher" style="position: fixed; bottom: 80px; right: 20px; background-color: #c5ecf4; color: #021488; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+    Toggle Dark/Light Mode
+  </button>
+
+  <script>
+    // Smooth Scrolling
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Scroll to Top Button
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = '↑';
+    scrollToTopBtn.style.position = 'fixed';
+    scrollToTopBtn.style.bottom = '20px';
+    scrollToTopBtn.style.right = '20px';
+    scrollToTopBtn.style.display = 'none';
+    scrollToTopBtn.style.zIndex = '1000';
+    scrollToTopBtn.style.backgroundColor = '#021488';
+    scrollToTopBtn.style.color = '#c5ecf4';
+    scrollToTopBtn.style.border = 'none';
+    scrollToTopBtn.style.padding = '10px';
+    scrollToTopBtn.style.borderRadius = '5px';
+    scrollToTopBtn.style.cursor = 'pointer';
+    document.body.appendChild(scrollToTopBtn);
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        scrollToTopBtn.style.display = "block";
+      } else {
+        scrollToTopBtn.style.display = "none";
+      }
+    };
+
+    scrollToTopBtn.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Dark/Light Mode Toggle
+    const toggleSwitch = document.getElementById('themeSwitcher');
+
+    toggleSwitch.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
